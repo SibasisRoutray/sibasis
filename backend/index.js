@@ -193,78 +193,78 @@ app.post('/api/contact', async (req, res) => {
     `;
 
     // User auto-reply - Simpler, cleaner, lighter
-    const userHtml = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <style>
-          body { margin: 0; padding: 0; background: #f4f6f8; font-family: Arial, Helvetica, sans-serif; color: #333; }
-          .wrapper { max-width: 650px; margin: 40px auto; background: #ffffff; border-radius: 10px; overflow: hidden; border: 1px solid #e5e7eb; }
-          .header { background: #111827; color: #ffffff; padding: 30px; text-align: center; }
-          .header h1 { margin: 0; font-size: 28px; font-weight: 600; }
-          .content { padding: 35px; }
-          .content p { line-height: 1.8; font-size: 15px; color: #4b5563; margin-bottom: 18px; }
-          .message-box { margin: 30px 0; padding: 20px; background: #f9fafb; border-left: 4px solid #059669; border-radius: 6px; }
-          .message-title { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 10px; }
-          .message-box p { margin: 0; color: #374151; }
-          .info { margin-top: 25px; padding: 16px; background: #f3f4f6; border-radius: 6px; font-size: 14px; color: #6b7280; }
-          .footer { border-top: 1px solid #e5e7eb; padding: 25px 35px; text-align: center; font-size: 14px; color: #6b7280; background: #fafafa; }
-          .footer a { color: #059669; text-decoration: none; margin: 0 10px; }
-          .signature { margin-top: 30px; color: #111827; }
-          .signature strong { display: block; font-size: 16px; margin-bottom: 4px; }
-        </style>
-      </head>
-      <body>
-        <div class="wrapper">
-          <div class="header">
-            <h1>Thank You for Reaching Out</h1>
-          </div>
-          <div class="content">
-            <p>Dear <strong>${name}</strong>,</p>
-            <p>
-              Thank you for contacting me. I have successfully received your message
-              and appreciate you taking the time to reach out.
-            </p>
-            <p>
-              I will carefully review your inquiry and respond as soon as possible,
-              typically within <strong>24 hours</strong>.
-            </p>
-            <div class="message-box">
-              <div class="message-title">Your Submitted Message</div>
-              <p>${message}</p>
-            </div>
-            <div class="info">
-              <strong>Submission Date</strong><br>
-              ${new Date().toLocaleString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </div>
-            <div class="signature">
-              <strong>Sibasis Routray</strong>
-              Software Developer
-            </div>
-          </div>
-          <div class="footer">
-            <p>Thank you for your interest. I look forward to speaking with you.</p>
-            <p>
-              <a href="https://github.com/YOUR_GITHUB">GitHub</a> |
-              <a href="https://www.linkedin.com/in/sibasis-routray-1b8bb924b">LinkedIn</a> |
-              <a href="https://YOUR_PORTFOLIO_URL">Portfolio</a>
-            </p>
-            <p style="margin-top:20px;font-size:12px;color:#9ca3af;">
-              This is an automated confirmation email. Please do not reply to this message.
-            </p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
+    // const userHtml = `
+    //   <!DOCTYPE html>
+    //   <html>
+    //   <head>
+    //     <meta charset="UTF-8">
+    //     <style>
+    //       body { margin: 0; padding: 0; background: #f4f6f8; font-family: Arial, Helvetica, sans-serif; color: #333; }
+    //       .wrapper { max-width: 650px; margin: 40px auto; background: #ffffff; border-radius: 10px; overflow: hidden; border: 1px solid #e5e7eb; }
+    //       .header { background: #111827; color: #ffffff; padding: 30px; text-align: center; }
+    //       .header h1 { margin: 0; font-size: 28px; font-weight: 600; }
+    //       .content { padding: 35px; }
+    //       .content p { line-height: 1.8; font-size: 15px; color: #4b5563; margin-bottom: 18px; }
+    //       .message-box { margin: 30px 0; padding: 20px; background: #f9fafb; border-left: 4px solid #059669; border-radius: 6px; }
+    //       .message-title { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 10px; }
+    //       .message-box p { margin: 0; color: #374151; }
+    //       .info { margin-top: 25px; padding: 16px; background: #f3f4f6; border-radius: 6px; font-size: 14px; color: #6b7280; }
+    //       .footer { border-top: 1px solid #e5e7eb; padding: 25px 35px; text-align: center; font-size: 14px; color: #6b7280; background: #fafafa; }
+    //       .footer a { color: #059669; text-decoration: none; margin: 0 10px; }
+    //       .signature { margin-top: 30px; color: #111827; }
+    //       .signature strong { display: block; font-size: 16px; margin-bottom: 4px; }
+    //     </style>
+    //   </head>
+    //   <body>
+    //     <div class="wrapper">
+    //       <div class="header">
+    //         <h1>Thank You for Reaching Out</h1>
+    //       </div>
+    //       <div class="content">
+    //         <p>Dear <strong>${name}</strong>,</p>
+    //         <p>
+    //           Thank you for contacting me. I have successfully received your message
+    //           and appreciate you taking the time to reach out.
+    //         </p>
+    //         <p>
+    //           I will carefully review your inquiry and respond as soon as possible,
+    //           typically within <strong>24 hours</strong>.
+    //         </p>
+    //         <div class="message-box">
+    //           <div class="message-title">Your Submitted Message</div>
+    //           <p>${message}</p>
+    //         </div>
+    //         <div class="info">
+    //           <strong>Submission Date</strong><br>
+    //           ${new Date().toLocaleString("en-US", {
+    //             weekday: "long",
+    //             year: "numeric",
+    //             month: "long",
+    //             day: "numeric",
+    //             hour: "2-digit",
+    //             minute: "2-digit",
+    //           })}
+    //         </div>
+    //         <div class="signature">
+    //           <strong>Sibasis Routray</strong>
+    //           Software Developer
+    //         </div>
+    //       </div>
+    //       <div class="footer">
+    //         <p>Thank you for your interest. I look forward to speaking with you.</p>
+    //         <p>
+    //           <a href="https://github.com/YOUR_GITHUB">GitHub</a> |
+    //           <a href="https://www.linkedin.com/in/sibasis-routray-1b8bb924b">LinkedIn</a> |
+    //           <a href="https://YOUR_PORTFOLIO_URL">Portfolio</a>
+    //         </p>
+    //         <p style="margin-top:20px;font-size:12px;color:#9ca3af;">
+    //           This is an automated confirmation email. Please do not reply to this message.
+    //         </p>
+    //       </div>
+    //     </div>
+    //   </body>
+    //   </html>
+    // `;
 
     // ✅ FIX 3: Send admin email with proper label for debugging
     console.log(`📤 Sending admin notification to: ${TO_EMAIL}`);
@@ -292,23 +292,23 @@ console.log("Admin Email ID:", adminResult.data.id);
     await new Promise(resolve => setTimeout(resolve, 1200));
 
     // ✅ FIX 4: Send user auto-reply with proper label for debugging
-    console.log(`📤 Sending auto-reply to: ${email}`);
+    // console.log(`📤 Sending auto-reply to: ${email}`);
     
-    const userResult = await resend.emails.send({
-  from: FROM_EMAIL,
-  to: [email],
-  subject: "Thank you for contacting me",
-  html: userHtml,
-});
+    // const userResult = await resend.emails.send({
+    //   from: FROM_EMAIL,
+    //   to: [email],
+    //   subject: "Thank you for contacting me",
+    //   html: userHtml,
+    // });
 
-console.log(userResult);
+    // console.log(userResult);
 
-if (userResult.error) {
-  console.error(userResult.error);
-  throw new Error(userResult.error.message);
-}
+    // if (userResult.error) {
+    //   console.error(userResult.error);
+    //   throw new Error(userResult.error.message);
+    // }
 
-console.log("Email ID:", userResult.data.id);
+    // console.log("Email ID:", userResult.data.id);
 
     // console.log(`✅ Auto-reply sent to user (ID: ${userResult.id})`);
     console.log('✅ Contact form processed successfully');
