@@ -1,5 +1,5 @@
 import { Quote, Star } from "lucide-react";
-import { FadeIn } from "./FadeIn";
+import { FadeIn } from "../customUi/FadeIn";
 import styled from 'styled-components';
 
 const TESTIMONIALS = [

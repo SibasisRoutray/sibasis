@@ -1,4 +1,4 @@
-import { FadeIn } from "./FadeIn";
+import { FadeIn } from "../customUi/FadeIn";
 import { useState, useEffect } from "react";
 import ContactForm from "./ContactForm";
 import { X } from "lucide-react";
@@ -49,26 +49,45 @@ export function ContactSection() {
             Let's build something extraordinary together.
           </p>
         </FadeIn>
-        <FadeIn delay={0.2} y={30}>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-4 rounded-full px-8 py-4 sm:px-10 sm:py-5 font-bold uppercase tracking-wider transition-transform hover:scale-105"
-            style={{
-              backgroundColor: "#D7E2EA",
-              color: "#0C0C0C",
-              fontSize: "clamp(0.85rem, 1.2vw, 1rem)",
-            }}
-          >
-            Get In Touch
-          </button>
-        </FadeIn>
+       <FadeIn delay={0.2} y={30}>
+  <button
+    onClick={() => setIsModalOpen(true)}
+    className="inline-flex items-center gap-4 rounded-full px-8 py-4 sm:px-10 sm:py-5 font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg text-[#0C0C0C] hover:shadow-emerald-500/30  bg-[#D7E2EA] hover:bg-black hover:text-emerald-400"
+    style={{
+      fontSize: "clamp(0.85rem, 1.2vw, 1rem)",
+    }}
+  >
+    Get In Touch
+  </button>
+</FadeIn>
         <FadeIn delay={0.3} y={30}>
-          <div className="flex gap-6 sm:gap-8 mt-16 sm:mt-20" style={{ color: "#D7E2EA" }}>
-            <a href="#" className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity">GitHub</a>
-            <a href="https://www.linkedin.com/in/sibasis-routray-1b8bb924b?utm_source=share_via&utm_content=profile&utm_medium=member_android" className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity">LinkedIn</a>
-            <a href="#" className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity">Twitter</a>
-          </div>
-        </FadeIn>
+  <div className="flex gap-6 sm:gap-8 mt-16 sm:mt-20" style={{ color: "#D7E2EA" }}>
+    <a 
+      href="#" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity"
+    >
+      GitHub
+    </a>
+    <a 
+      href="https://www.linkedin.com/in/sibasis-routray-1b8bb924b?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity"
+    >
+      LinkedIn
+    </a>
+    <a 
+      href="#" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="uppercase tracking-widest text-xs opacity-60 hover:opacity-100 transition-opacity"
+    >
+      Twitter
+    </a>
+  </div>
+</FadeIn>
       </section>
 
       {/* Modal */}

@@ -10,8 +10,8 @@ import { TestimonialsSection } from "@/components/portfolio/TestimonialsSection"
 import { ExperienceSection } from "@/components/portfolio/ExperienceSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
 import ContactForm from "@/components/portfolio/ContactForm";
-import { ScrollToTop } from "@/components/portfolio/ScrollToTop";
-import Loader from "@/components/portfolio/Loader";
+import { ScrollToTop } from "@/components/customUi/ScrollToTop";
+import Loader from "@/components/customUi/Loader";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 

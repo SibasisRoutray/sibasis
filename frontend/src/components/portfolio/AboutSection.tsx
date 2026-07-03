@@ -1,6 +1,6 @@
-import { FadeIn } from "./FadeIn";
+import { FadeIn } from "../customUi/FadeIn";
 import { AnimatedText } from "./AnimatedText";
-import { ContactButton } from "./ContactButton";
+import { ContactButton } from "../customUi/ContactButton";
 
 export function AboutSection() {
   return (

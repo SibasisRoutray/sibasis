@@ -216,7 +216,7 @@ const StyledWrapper = styled.div`
   .enter {
     height: 55px;
     width: 160px;
-    border-radius: 8px;
+    border-radius: 38px;
     border: 1px solid rgba(16, 185, 129, 0.5);
     cursor: pointer;
     background-color: rgba(5, 150, 105, 0.1);

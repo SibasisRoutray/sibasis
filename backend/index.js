@@ -269,17 +269,22 @@ app.post('/api/contact', async (req, res) => {
     // ✅ FIX 3: Send admin email with proper label for debugging
     console.log(`📤 Sending admin notification to: ${TO_EMAIL}`);
     
-    const adminResult = await sendWithTimeout(
-      resend.emails.send({
-        from: FROM_EMAIL,
-        to: [TO_EMAIL],
-        replyTo: email,
-        subject: `New Portfolio Contact Form Submission - ${name}`,
-        html: adminHtml,
-      }),
-      15000,
-      "ADMIN_EMAIL" // ✅ Specific label for admin email
-    );
+    const adminResult = await resend.emails.send({
+  from: FROM_EMAIL,
+  to: [TO_EMAIL],
+  replyTo: email,
+  subject: `New Portfolio Contact Form Submission - ${name}`,
+  html: adminHtml,
+});
+
+console.log("Admin Result:", adminResult);
+
+if (adminResult.error) {
+  console.error("Admin Error:", adminResult.error);
+  throw new Error(adminResult.error.message);
+}
+
+console.log("Admin Email ID:", adminResult.data.id);
 
     console.log(`✅ Admin notification sent (ID: ${adminResult.id})`);
 
@@ -289,18 +294,23 @@ app.post('/api/contact', async (req, res) => {
     // ✅ FIX 4: Send user auto-reply with proper label for debugging
     console.log(`📤 Sending auto-reply to: ${email}`);
     
-    const userResult = await sendWithTimeout(
-      resend.emails.send({
-        from: FROM_EMAIL,
-        to: [email],
-        subject: "Thank you for contacting me",
-        html: userHtml,
-      }),
-      15000,
-      "USER_EMAIL" // ✅ Specific label for user email
-    );
+    const userResult = await resend.emails.send({
+  from: FROM_EMAIL,
+  to: [email],
+  subject: "Thank you for contacting me",
+  html: userHtml,
+});
 
-    console.log(`✅ Auto-reply sent to user (ID: ${userResult.id})`);
+console.log(userResult);
+
+if (userResult.error) {
+  console.error(userResult.error);
+  throw new Error(userResult.error.message);
+}
+
+console.log("Email ID:", userResult.data.id);
+
+    // console.log(`✅ Auto-reply sent to user (ID: ${userResult.id})`);
     console.log('✅ Contact form processed successfully');
     
     res.status(200).json({ 

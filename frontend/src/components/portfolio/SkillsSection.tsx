@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { FadeIn } from "./FadeIn";
+import { FadeIn } from "../customUi/FadeIn";
 import {
   SiReact,
   SiTypescript,

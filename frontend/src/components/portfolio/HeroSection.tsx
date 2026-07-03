@@ -1,18 +1,14 @@
 import React, { memo, Fragment, useMemo, useRef, useState } from "react";
-import { FadeIn } from "./FadeIn";
-import { ContactButton } from "./ContactButton";
-import { Magnet } from "./Magnet";
+
+import { FadeIn } from "../customUi/FadeIn";
+import { ContactButton } from "../customUi/ContactButton";
+import { Magnet } from "../customUi/Magnet";
 import { FaDownload, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
+import SocialButton from "../customUi/SocialButton";
 
 const navLinks = ["About", "Skills", "Education", "Projects"];
 
-const socialLinks = [
-  { icon: FaGithub, href: "#", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://www.linkedin.com/in/sibasis-routray-1b8bb924b?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
-  { icon: FaTwitter, href: "#", label: "Twitter" },
-  { icon: FiMail, href: "#", label: "Email" },
-];
 
 // Static styles moved outside component
 const heroSectionStyle = { 
@@ -219,21 +215,22 @@ export function HeroSection() {
       <FadeIn as="nav" delay={0} y={-20} className="w-full px-6 md:px-10 pt-6 md:pt-8 relative z-30">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Navigation Links */}
-          <ul className="flex items-center gap-1 sm:gap-2 md:gap-4 lg:gap-6 mx-auto">
-            {navLinks.map((l) => (
-              <li key={l}>
-                <a
-                  href={`#${l.toLowerCase()}`}
-                  className="relative px-2 sm:px-3 py-2 text-xs sm:text-sm md:text-base lg:text-[1.1rem] font-medium uppercase tracking-wider transition-all duration-300 hover:text-white group"
-                  style={{ color: "#9CA3AF" }}
-                >
-                  {l}
-                  <span className="absolute -bottom-0 left-1/2 w-0 h-[2px] bg-gradient-to-r from-gray-400 to-gray-300 transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                  <span className="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <ul className="mx-auto flex items-center gap-1 sm:gap-2 md:gap-4 lg:gap-5 rounded-full border border-white/5 bg-zinc-900/40 px-4 py-2 backdrop-blur-md">
+  {navLinks.map((l) => (
+    <li key={l} className="relative group">
+      <a
+        href={`#${l.toLowerCase()}`}
+        className="relative block px-3 py-1.5 text-xs sm:text-sm font-medium capitalize tracking-wide text-zinc-400 transition-colors duration-300 hover:text-white"
+      >
+        {/* Text Layer */}
+        <span className="relative z-10">{l}</span>
+        
+        {/* Modern Glassmorphic Pill Hover Effect */}
+        <span className="absolute inset-0 scale-95 rounded-full bg-white/[0.06] opacity-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100" />
+      </a>
+    </li>
+  ))}
+</ul>
 
           {/* Right side - optional CTA or social */}
           <div className="hidden md:flex items-center gap-3">
@@ -252,9 +249,9 @@ export function HeroSection() {
       </FadeIn>
 
       <div className="flex-1 flex flex-col justify-between relative">
-        <div className="overflow-hidden mt-6 sm:mt-4 md:-mt-5 px-6 md:px-10 relative ">
+        <div className="overflow-hidden mt-6 sm:mt-4 md:-mt-5 px-6 md:px-10 relative  justify-center flex items-center">
           <FadeIn delay={0.15} y={40}>
-            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[14.5vw] relative">
+            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[13vw] sm:text-[14vw] md:text-[15vw] lg:text-[13.5vw] relative">
               Hi, i&apos;m sibasis
             </h1>
           </FadeIn>
@@ -265,7 +262,7 @@ export function HeroSection() {
           strength={3}
           activeTransition="transform 0.3s ease-out"
           inactiveTransition="transform 0.6s ease-in-out"
-          className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[550px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-1/3 lg:bottom-0"
+          className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[360px] 2xl:w-[550px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-1/3 lg:bottom-0"
         >
           <FadeIn delay={0.6} y={30}>
             {/* Using group for hover - no React state needed */}
@@ -288,14 +285,35 @@ export function HeroSection() {
           <FadeIn delay={0.35} y={20}>
             <div>
               <p
-                className="font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]"
+                className="font-light uppercase tracking-wide leading-snug max-w-[200px] sm:max-w-[280px] md:max-w-[360px]"
                 style={{ color: "#D7E2EA", fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
               >
-                a software developer crafting fast, elegant, motion-rich web experiences
+                Software Developer specializing in React, TypeScript, and modern web experiences. Building fast, scalable, and interactive products.
               </p>
               
-              {/* Social Links - now using memoized array */}
-              <div className="flex gap-3 mt-4">
+              
+              <FadeIn delay={0.5} y={20}>
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto mt-10">
+              {/* Download CV Button */}
+             <a
+  href="/SibasisRoutray.pdf"
+  download
+  className="group flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-400/30 hover:bg-emerald-500/10"
+  style={{
+    borderColor: "rgba(215, 226, 234, 0.2)",
+    background: "rgba(215, 226, 234, 0.05)",
+    color: "#D7E2EA"
+  }}
+>
+  <FaDownload className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-emerald-400" />
+  <span className="text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors duration-300 group-hover:text-emerald-400">Download CV</span>
+</a>
+              
+              <ContactButton />
+            </div>
+          </FadeIn>
+
+              {/* <div className="flex gap-3 mt-4">
                 {socialLinks.map((social, i) => (
                   <FadeIn key={i} delay={0.4 + i * 0.05} y={10}>
                     <a
@@ -308,30 +326,15 @@ export function HeroSection() {
                     </a>
                   </FadeIn>
                 ))}
-              </div>
+              </div> */}
             </div>
           </FadeIn>
           
-          <FadeIn delay={0.5} y={20}>
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              {/* Download CV Button */}
-              <a
-                href="/SibasisRoutray.pdf"
-                download
-                className="group flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/20"
-                style={{
-                  borderColor: "rgba(215, 226, 234, 0.2)",
-                  background: "rgba(215, 226, 234, 0.05)",
-                  color: "#D7E2EA"
-                }}
-              >
-                <FaDownload className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover:translate-y-0.5" />
-                <span className="text-xs sm:text-sm font-medium uppercase tracking-wider">Download CV</span>
-              </a>
-              
-              <ContactButton />
-            </div>
+          {/* Social Links - now using memoized array */}
+          <FadeIn>
+                 <SocialButton/> 
           </FadeIn>
+             
         </div>
       </div>
 
